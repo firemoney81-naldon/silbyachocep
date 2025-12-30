@@ -1,23 +1,387 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+  <!-- Schema.org 마크업 (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "실비보험 다이렉트 비교 및 가입 가이드",
+      "description": "2026년 최신 4세대 실비보험 다이렉트 가입 가이드. 주요 보험사별 가격 비교, 보장 내용 분석, 청구 방법까지 한 번에 확인하세요.",
+      "url": "https://도메인/실비보험다이렉트",
+      "publisher": {
+        "@type": "Organization",
+        "name": "실비보험 다이렉트 비교센터"
+      }
+    }
+    </script>
+    <style>
+        /* 기본 스타일 */
+        body { font-family: 'Noto Sans KR', sans-serif; line-height: 1.8; margin: 0; padding: 0; background-color: #f4f7f6; color: #333; }
+        header, section, footer { max-width: 1000px; margin: 20px auto; padding: 25px; background: #ffffff; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+        h1, h2, h3, h4 { color: #004aad; font-weight: 700; }
+        h1 { font-size: 2.5em; text-align: center; margin-bottom: 10px; }
+        h2 { font-size: 2em; border-bottom: 3px solid #e1eaf3; padding-bottom: 10px; margin-top: 40px; }
+        h3 { font-size: 1.5em; color: #0070f3; margin-top: 25px; }
+        p { margin-bottom: 1.2em; text-align: justify; }
+        ul, ol { padding-left: 25px; margin-bottom: 20px; }
+        li { margin-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.95em; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background: #004aad; color: #fff; text-align: center; font-weight: 700; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        a { color: #0070f3; text-decoration: none; transition: color 0.3s; }
+        a:hover { text-decoration: underline; color: #005bb5; }
+        /* 강조 요소 */
+        .highlight { background-color: #e6f7ff; padding: 15px; border-left: 5px solid #0070f3; border-radius: 8px; margin: 20px 0; }
+        .key-point { font-weight: 700; color: #d90000; }
+        /* CTA 버튼 */
+        .btn-cta {
+            display: block;
+            width: fit-content;
+            margin: 20px auto;
+            padding: 15px 30px;
+            background: #ff6f61; /* 부드러운 CTA 색상 */
+            color: #fff;
+            font-size: 1.1em;
+            font-weight: 700;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(255, 111, 97, 0.4);
+            transition: background-color 0.3s ease;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-cta:hover {
+            background: #e65c50;
+        }
+        /* 폼 스타일 */
+        form { background: #fdfdfd; padding: 30px; border-radius: 10px; border: 1px solid #eee; margin-top: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; color: #555; }
+        input[type="text"], input[type="tel"], select, textarea {
+            width: calc(100% - 24px);
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+        input[type="radio"], input[type="checkbox"] { margin-right: 8px; }
+        .form-group { margin-bottom: 20px; }
+        .form-check { margin-bottom: 10px; }
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            header, section, footer { padding: 15px; margin: 10px auto; }
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.5em; }
+            th, td { padding: 10px; font-size: 0.9em; }
+            .btn-cta { width: 90%; font-size: 1em; }
+        }
+        /* 앵커 스타일 (스크롤 오프셋) */
+        .anchor { display: block; position: relative; top: -80px; visibility: hidden; }
+
+        /* 그래프 및 시각적 요소 스타일 */
+        .graph-container { margin: 30px 0; text-align: center; }
+        .chart { width: 100%; height: 300px; background-color: #f0f0f0; border: 1px solid #ccc; border-radius: 8px; display: flex; align-items: flex-end; justify-content: space-around; padding: 20px; box-sizing: border-box; }
+        .bar-chart { width: 15%; background-color: #0070f3; margin: 0 1%; position: relative; border-radius: 5px 5px 0 0; }
+        .bar-label { font-size: 0.8em; color: #555; margin-top: 10px; }
+        .bar-value { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); color: #333; font-weight: 700; font-size: 0.9em; }
+        .tooltip { visibility: hidden; background-color: #333; color: #fff; text-align: center; border-radius: 6px; padding: 5px 10px; position: absolute; z-index: 1; bottom: 125%; left: 50%; margin-left: -60px; opacity: 0; transition: opacity 0.3s; }
+        .bar-chart:hover .tooltip { visibility: visible; opacity: 1; }
+    </style>
+</head>
+<body>
+
+  <header>
+    <h1>2026년 4세대 실비보험 다이렉트 가입 완벽 가이드</h1>
+    <p>복잡한 실비보험, 이제 전문가의 도움 없이 다이렉트로 똑똑하게 비교하고 가입하세요. 2026년 최신 보장 내용과 필수 체크리스트를 제공합니다.</p>
+    <button class="btn-cta" onclick="location.href='#quote-form'">실시간 보험료 계산 &amp; 다이렉트 비교 시작하기</button>
+  </header>
+
+  <nav aria-label="주요 콘텐츠 이동">
+    <section style="background:none; box-shadow:none; padding:0;">
+        <ul style="list-style: none; padding: 0; display: flex; justify-content: space-around; margin-top: 20px; flex-wrap: wrap;">
+            <li><a href="#intro" style="padding: 10px 15px; background: #e1eaf3; border-radius: 20px; margin: 5px; display: inline-block;">4세대 실비보험이란?</a></li>
+            <li><a href="#comparison" style="padding: 10px 15px; background: #e1eaf3; border-radius: 20px; margin: 5px; display: inline-block;">보험사별 가격 비교</a></li>
+            <li><a href="#guide" style="padding: 10px 15px; background: #e1eaf3; border-radius: 20px; margin: 5px; display: inline-block;">가입 조건 및 심사 가이드</a></li>
+            <li><a href="#claims" style="padding: 10px 15px; background: #e1eaf3; border-radius: 20px; margin: 5px; display: inline-block;">보험금 청구 절차</a></li>
+            <li><a href="#checklist" style="padding: 10px 15px; background: #e1eaf3; border-radius: 20px; margin: 5px; display: inline-block;">가입 전 체크리스트</a></li>
+            <li><a href="#quote-form" style="padding: 10px 15px; background: #e1eaf3; border-radius: 20px; margin: 5px; display: inline-block;">무료 견적 요청</a></li>
+        </ul>
+    </section>
+  </nav>
+
+  <section id="intro">
+    <span id="intro-anchor" class="anchor"></span>
+    <h2>실비보험 다이렉트, 왜 4세대 실비보험이 대세인가?</h2>
+    <p>실손의료비보험, 일명 실비보험은 국민 건강보험이 보장하지 않는 비급여 항목의 의료비를 돌려받을 수 있는 가장 기본적이면서 필수적인 보험입니다. 특히, 최근 몇 년간 보험료 부담 증가와 보장 내용 변화로 인해 2021년 7월 1일에 출시된 <span class="key-point">4세대 실비보험</span>이 표준으로 자리 잡았습니다. 4세대 실비보험은 기존 세대와 달리 보험료가 상대적으로 저렴한 대신 자기부담금이 늘어났으며, 비급여 항목에 대한 보장과 보험료 갱신 방식에 큰 변화가 있습니다. 다이렉트 가입은 이러한 변화 속에서 불필요한 수수료를 줄여 보험료를 절감할 수 있는 가장 효과적인 방법입니다.</p>
+
+    <h3>4세대 실비보험의 주요 특징 (2026년 기준)</h3>
+    <p class="highlight">4세대 실비보험은 '손해율 관리'를 위해 도입되었으며, 특히 <span class="key-point">비급여 항목의 보험료 차등제</span>가 핵심입니다. 이 제도는 비급여 의료 이용량이 많은 가입자의 보험료를 할증시키는 방식으로, 보험료 부담의 형평성을 높이는 데 중점을 둡니다. 이는 가입자 스스로가 의료비 절약을 위해 노력하도록 유도하는 효과를 가져옵니다. 2026년 현재도 이 제도는 유지되고 있으며, 가입자는 자신의 병력에 따라 보험료가 달라질 수 있음을 인지해야 합니다.</p>
+
+    <ul>
+        <li><strong>보험료 절감 효과:</strong> 다이렉트 가입 시 설계사 수수료가 없어 일반 가입 대비 평균 10%~30% 저렴합니다.</li>
+        <li><strong>갱신 주기:</strong> 1년 갱신형으로 운영되며, 5년마다 재가입을 통해 보장 내용이 변경됩니다.</li>
+        <li><strong>자기부담금 상향:</strong> 급여 항목은 20%, 비급여 항목은 30%로 기존 세대에 비해 높아졌습니다.</li>
+        <li><strong>비급여 특약 분리:</strong> 도수치료, 체외충격파, 증식치료, 비급여 주사료, MRI 검사 등 3가지 특약으로 분리되어 필요에 따라 선택 가입이 가능합니다.</li>
+    </ul>
+
+    <h3>실비보험 다이렉트 vs. 설계사 가입 비교</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>구분</th>
+                <th>다이렉트 (Direct) 가입</th>
+                <th>설계사 (Agency) 가입</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>보험료</td>
+                <td>저렴함 (수수료 절감)</td>
+                <td>비교적 비쌈 (수수료 포함)</td>
+            </tr>
+            <tr>
+                <td>가입 편의성</td>
+                <td>온라인/모바일로 직접 가입 (시간 제약 없음)</td>
+                <td>설계사 미팅 필요 (시간 조율 필요)</td>
+            </tr>
+            <tr>
+                <td>보장 분석</td>
+                <td>가입자가 직접 확인 필요 (비교 사이트 활용)</td>
+                <td>설계사에게 상담 및 추천 가능</td>
+            </tr>
+            <tr>
+                <td>추천 대상</td>
+                <td>보험 지식이 있거나, 저렴한 보험료를 원하는 사람</td>
+                <td>보험이 어렵고, 맞춤형 상담을 원하는 사람</td>
+            </tr>
+        </tbody>
+    </table>
+  </section>
+
+  <section id="comparison">
+    <span id="comparison-anchor" class="anchor"></span>
+    <h2>주요 보험사별 4세대 실비보험 다이렉트 가격 및 보장 비교 (2026년)</h2>
+    <p>실비보험은 모든 보험사의 보장 내용이 거의 동일한 표준화 상품이지만, <span class="key-point">갱신 시점에 적용되는 손해율에 따라 보험료가 달라지므로</span> 초기 보험료를 비교하는 것이 중요합니다. 특히 다이렉트 채널의 경쟁으로 인해 회사별로 약간의 할인 혜택이나 특약 구성이 다를 수 있습니다. 2026년 현재 주요 보험사들의 평균적인 다이렉트 실비보험료를 연령대별로 비교해 보겠습니다.</p>
+
+    <h3>4세대 실비보험 연령별 평균 보험료 비교 (예시)</h3>
+    <div class="graph-container">
+        <div class="chart">
+            <div class="bar-chart" style="height: 40%;">
+                <div class="bar-value">10대</div>
+                <div class="tooltip">평균 보험료: 1만원 내외</div>
+            </div>
+            <div class="bar-chart" style="height: 60%;">
+                <div class="bar-value">20대</div>
+                <div class="tooltip">평균 보험료: 1.5만원 내외</div>
+            </div>
+            <div class="bar-chart" style="height: 75%;">
+                <div class="bar-value">30대</div>
+                <div class="tooltip">평균 보험료: 2만원 내외</div>
+            </div>
+            <div class="bar-chart" style="height: 90%;">
+                <div class="bar-value">40대</div>
+                <div class="tooltip">평균 보험료: 2.5만원 내외</div>
+            </div>
+            <div class="bar-chart" style="height: 100%;">
+                <div class="bar-value">50대</div>
+                <div class="tooltip">평균 보험료: 3만원 내외</div>
+            </div>
+        </div>
+        <div class="bar-label">연령대별 실비보험 평균 보험료 예시 (단위: 만 원)</div>
+    </div>
+
+    <p>위 표는 일반적인 예시이며, 개인의 건강 상태나 성별에 따라 실제 보험료는 크게 달라질 수 있습니다. 특히 40대 이후부터는 보험료가 급격히 상승하는 경향이 있으므로, 젊을 때 가입하는 것이 유리합니다. 다이렉트 비교 사이트를 활용하면 여러 보험사의 실시간 견적을 한 번에 비교할 수 있어 시간을 절약하고 최적의 상품을 찾을 수 있습니다.</p>
+
+    <h3>4세대 실비보험 비급여 특약 선택의 중요성</h3>
+    <p>4세대 실비보험은 비급여 항목인 도수치료, 비급여 주사료, MRI 검사를 별도의 특약으로 분리했습니다. 이는 이 항목들을 자주 이용하는 가입자의 보험료 부담을 줄이기 위한 조치입니다. 가입자는 자신의 건강 상태를 고려하여 이 특약을 선택적으로 가입할 수 있습니다.</p>
+    <ul>
+        <li><strong>도수치료/체외충격파/증식치료:</strong> 근골격계 질환으로 도수치료를 자주 받는 경우에 유리합니다.</li>
+        <li><strong>비급여 주사료:</strong> 면역력이 약해 영양주사나 비타민 주사를 자주 맞는 경우 고려할 수 있습니다.</li>
+        <li><strong>자기공명영상(MRI)/자기공명혈관조영(MRA):</strong> 중대 질병 진단 시 고가의 검사비용을 대비하기 위해 필수적입니다.</li>
+    </ul>
+
+    <p><strong><span class="key-point">참고:</span></strong> 금융감독원에서는 실비보험의 손해율 관리를 위해 2026년 이후에도 비급여 항목에 대한 관리를 강화할 예정입니다. 따라서 현재 시점에서 특약 선택은 신중해야 합니다.</p>
+  </section>
+
+  <section id="guide">
+    <span id="guide-anchor" class="anchor"></span>
+    <h2>실비보험 다이렉트 가입 조건 및 심사 가이드</h2>
+    <p>실비보험은 가입자의 건강 상태에 따라 가입이 거절될 수 있는 <span class="key-point">고지 의무</span>가 있습니다. 다이렉트로 가입하더라도 이 심사 과정은 동일하게 적용됩니다. 특히 4세대 실비보험에서는 유병력자도 가입할 수 있는 '간편 심사 실비보험'이 있으므로, 자신의 상황에 맞는 상품을 선택하는 것이 중요합니다.</p>
+
+    <h3>일반 심사 vs. 간편 심사 실비보험</h3>
+    <p>최근 5년간 병원 치료 이력이 있다면 일반 심사를 통과하기 어려울 수 있습니다. 이 경우, 유병력자를 위한 <span class="key-point">간편 심사 실비보험</span>을 고려해볼 수 있습니다. 간편 심사 보험은 고지 의무 질문이 단순화되어 있어 만성 질환이 있는 사람도 가입이 쉽습니다.</p>
+
+    <div class="highlight">
+        <h4>간편 심사 고지 내용 (대표적인 예시, 2026년 기준)</h4>
+        <ol>
+            <li>최근 3개월 이내 의사로부터 입원, 수술, 추가 검사 소견을 받은 적이 있습니까?</li>
+            <li>최근 2년 이내 입원, 수술을 받은 적이 있습니까?</li>
+            <li>최근 5년 이내 암으로 진단받거나 입원/수술을 받은 적이 있습니까?</li>
+        </ol>
+        <p>위 3가지 질문에 모두 '아니오'라면 간편 심사를 통해 가입할 수 있습니다. 보험사별로 세부 조건에 차이가 있을 수 있으므로 다이렉트 견적 시 반드시 확인해야 합니다.</p>
+    </div>
+
+    <h3>실비보험 가입 시 고지 의무 유의사항</h3>
+    <p>보험 계약 시 가입자는 과거 병력을 사실대로 알릴 의무가 있습니다. 고지 의무를 위반할 경우 보험금 지급이 거절되거나 계약이 해지될 수 있습니다. 다이렉트 가입 시에도 입력란에 정확한 정보를 기재해야 합니다. <span class="key-point">특히, 약을 복용 중이거나 치료 중인 질환이 있다면 반드시 고지해야 합니다.</span> 금융감독원의 가이드라인에 따르면, 고의로 고지 의무를 위반할 경우 법적 불이익을 받을 수 있습니다.</p>
+
+    <p><strong>참고 사이트:</strong> 금융감독원 1332 (금융소비자보호처)에서 실비보험 가입 관련 민원 및 분쟁 조정 사례를 확인할 수 있습니다.</p>
+  </section>
+
+  <section id="claims">
+    <span id="claims-anchor" class="anchor"></span>
+    <h2>실비보험 다이렉트 보험금 청구 절차 및 노하우</h2>
+    <p>다이렉트로 가입하더라도 보험금 청구 과정은 모든 보험사가 동일하게 적용됩니다. 보험금 청구는 복잡해 보이지만, 요즘은 모바일 앱이나 홈페이지를 통해 간편하게 진행할 수 있습니다. 정확한 청구를 위해 필요한 서류와 절차를 미리 숙지하세요.</p>
+
+    <h3>보험금 청구 필수 서류 (2026년 기준)</h3>
+    <ul>
+        <li><strong>공통 서류:</strong> 보험금 청구서, 개인정보 처리 동의서, 신분증 사본, 통장 사본.</li>
+        <li><strong>진료비가 5만 원 이하인 경우:</strong> 영수증(진료비 계산서)만으로 청구 가능.</li>
+        <li><strong>진료비가 5만 원 초과인 경우:</strong> 진료비 계산서, 진단서 또는 진료확인서, 입원 시 입퇴원 확인서 등이 추가로 필요합니다.</li>
+    </ul>
+
+    <h3>청구 노하우: 비급여 항목 청구 시 유의사항</h3>
+    <p>4세대 실비보험에서는 비급여 항목의 청구 시 <span class="key-point">진료비 세부 내역서</span>가 필수적입니다. 보험사는 비급여 항목의 적정성을 판단하여 지급 금액을 결정하기 때문입니다. 특히 도수치료나 비급여 주사료 청구 시에는 의사의 소견서나 처방전이 함께 첨부되어야 합니다.</p>
+
+    <div class="highlight">
+        <h4>청구 시 유의사항</h4>
+        <p>비급여 치료 중 <span class="key-point">미용 목적의 치료, 예방 접종, 건강 검진</span> 등은 실비보험 보장 대상에서 제외됩니다. 단순히 피로 회복을 위한 영양제 투여도 보장되지 않을 수 있습니다. 의료적인 목적으로 진료가 이루어졌다는 의사의 소견이 중요합니다.</p>
+    </div>
+    <p><strong>참고 사이트:</strong> <a href="https://www.fss.or.kr" target="_blank">금융감독원 (FSS)</a>이나 <a href="https://www.kca.go.kr" target="_blank">한국소비자원</a> 홈페이지에서 보험금 청구 관련 분쟁 사례를 찾아볼 수 있습니다.</p>
+  </section>
+
+  <section id="checklist">
+    <span id="checklist-anchor" class="anchor"></span>
+    <h2>다이렉트 실비보험 가입 전 필수 체크리스트 (2026년 업데이트)</h2>
+    <p>다이렉트로 가입할 경우 설계사의 도움 없이 스스로 모든 것을 확인해야 합니다. 아래 체크리스트를 통해 꼼꼼히 점검하고 후회 없는 선택을 하세요.</p>
+
+    <div class="highlight">
+        <h3>1. 중복 보장 여부 확인 (필수!)</h3>
+        <p>실비보험은 가입자가 여러 개를 가입해도 실제 지출한 의료비 이상으로 보험금을 받을 수 없는 <span class="key-point">비례보상</span> 원칙이 적용됩니다. 과거에 가입한 실비보험이 있다면 새로 가입할 필요가 없으며, 보험료만 이중으로 납부하게 됩니다. 기존 보험 계약을 확인하거나, 보험 개발원의 <a href="https://www.data.fss.or.kr" target="_blank">내 보험 찾아줌</a> 서비스를 통해 중복 여부를 확인하세요.</p>
+    </div>
+
+    <div class="highlight">
+        <h3>2. 갱신형/비갱신형 선택의 딜레마</h3>
+        <p>4세대 실비보험은 모두 갱신형 상품입니다. 그러나 실비보험 외의 암보험, 종신보험 등 다른 보장성 보험을 다이렉트로 가입할 때는 비갱신형을 선택할 수 있습니다. 갱신형은 초기 보험료가 저렴하지만 나이가 들수록 보험료가 상승하고, 비갱신형은 초기 보험료는 비싸지만 일정 기간 후 보험료 변동이 없습니다. 실비보험 외 다른 보험을 다이렉트로 가입할 때는 자신의 노후 재정 계획에 맞춰 신중하게 선택해야 합니다.</p>
+    </div>
+
+    <div class="highlight">
+        <h3>3. 4세대 실비보험 재가입 주기의 이해</h3>
+        <p>4세대 실비보험은 5년마다 재가입을 해야 합니다. 이 재가입 시점에 보장 내용이 변경될 수 있습니다. 2026년 현재 가입하더라도 2031년에 재가입을 할 때의 보장 내용에 따라 보험료가 달라질 수 있다는 점을 인지해야 합니다. 이는 보험사의 손해율에 따라 달라지므로, 장기적인 관점에서 접근해야 합니다.</p>
+    </div>
+
+    <div class="highlight">
+        <h3>4. 비급여 항목 할증제도 확인</h3>
+        <p>4세대 실비보험은 비급여 항목에 대한 이용량이 많으면 다음 해 보험료가 할증될 수 있습니다. 100만 원 이상 이용 시 300%까지 할증될 수 있으므로, 비급여 치료를 자주 받는 가입자는 이 점을 염두에 두고 가입해야 합니다.</p>
+    </div>
+
+    <h3>함께 많이 찾는 키워드 (연관 검색어 분석)</h3>
+    <p>실비보험 다이렉트 가입자들이 함께 많이 검색하는 키워드입니다. 자신의 관심사와 맞는 키워드를 클릭하여 자세한 정보를 확인하세요.</p>
+    <ul style="list-style: none; padding: 0;">
+        <li style="display: inline-block; background: #e1eaf3; padding: 8px 15px; border-radius: 20px; margin: 5px;"><a href="#comparison" style="color: #333; text-decoration: none;">4세대 실비보험 비교사이트</a></li>
+        <li style="display: inline-block; background: #e1eaf3; padding: 8px 15px; border-radius: 20px; margin: 5px;"><a href="#guide" style="color: #333; text-decoration: none;">유병자 실비보험 가입 조건</a></li>
+        <li style="display: inline-block; background: #e1eaf3; padding: 8px 15px; border-radius: 20px; margin: 5px;"><a href="#claims" style="color: #333; text-decoration: none;">실비보험 청구 서류</a></li>
+        <li style="display: inline-block; background: #e1eaf3; padding: 8px 15px; border-radius: 20px; margin: 5px;"><a href="#" style="color: #333; text-decoration: none;">실비보험 갱신 시점</a></li>
+        <li style="display: inline-block; background: #e1eaf3; padding: 8px 15px; border-radius: 20px; margin: 5px;"><a href="#" style="color: #333; text-decoration: none;">실비보험 해지 환급금</a></li>
+    </ul>
+  </section>
+
+  <section id="quote-form">
+    <span id="quote-form-anchor" class="anchor"></span>
+    <h2>실비보험 다이렉트 맞춤 견적 신청</h2>
+    <p>고객님의 정보를 입력해 주시면, 2026년 최신 기준으로 가장 유리한 조건의 실비보험 상품을 비교 분석하여 실시간으로 안내해 드립니다. 다이렉트 견적을 통해 불필요한 비용을 절감하세요.</p>
+
+    <form action="/submit-quote" method="POST" style="max-width:700px; margin:auto;">
+
+        <!-- 1단계: 기본 정보 입력 -->
+        <h3>Step 1. 기본 정보 입력</h3>
+        <div class="form-group">
+            <label for="name">이름<span style="color:red;">*</span></label>
+            <input type="text" id="name" name="name" required placeholder="예: 홍길동" />
+        </div>
+        <div class="form-group">
+            <label for="phone">연락처<span style="color:red;">*</span></label>
+            <input type="tel" id="phone" name="phone" required placeholder="010-1234-5678" pattern="[0-9\-]+" />
+        </div>
+        <div class="form-group">
+            <label for="birthdate">생년월일<span style="color:red;">*</span></label>
+            <input type="text" id="birthdate" name="birthdate" required placeholder="예: 19901010" pattern="\d{8}" maxlength="8" />
+        </div>
+        <div class="form-group">
+            <label>성별<span style="color:red;">*</span></label>
+            <div class="form-check">
+                <input type="radio" id="gender_m" name="gender" value="male" required />
+                <label for="gender_m">남성</label>
+                <input type="radio" id="gender_f" name="gender" value="female" required style="margin-left: 20px;" />
+                <label for="gender_f">여성</label>
+            </div>
+        </div>
+
+        <!-- 2단계: 건강 정보 및 고지 의무 확인 (Dwell Time 증가 요소) -->
+        <h3>Step 2. 건강 상태 확인 (가입 심사 기초 자료)</h3>
+        <div class="form-group">
+            <label>최근 3개월 이내 의사로부터 입원, 수술, 추가 검사 소견을 받은 적이 있습니까?<span style="color:red;">*</span></label>
+            <div class="form-check">
+                <input type="radio" id="health_q1_y" name="health_q1" value="yes" required />
+                <label for="health_q1_y">예</label>
+                <input type="radio" id="health_q1_n" name="health_q1" value="no" required style="margin-left: 20px;" />
+                <label for="health_q1_n">아니오</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>최근 2년 이내 입원, 수술을 받은 적이 있습니까?<span style="color:red;">*</span></label>
+            <div class="form-check">
+                <input type="radio" id="health_q2_y" name="health_q2" value="yes" required />
+                <label for="health_q2_y">예</label>
+                <input type="radio" id="health_q2_n" name="health_q2" value="no" required style="margin-left: 20px;" />
+                <label for="health_q2_n">아니오</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>현재 복용 중인 약이 있거나, 만성 질환으로 치료 중입니까?</label>
+            <div class="form-check">
+                <input type="radio" id="health_q3_y" name="health_q3" value="yes" required />
+                <label for="health_q3_y">예</label>
+                <input type="radio" id="health_q3_n" name="health_q3" value="no" required style="margin-left: 20px;" />
+                <label for="health_q3_n">아니오</label>
+            </div>
+        </div>
+
+        <!-- 3단계: 특약 및 세부 사항 선택 -->
+        <h3>Step 3. 희망 가입 조건 선택</h3>
+        <div class="form-group">
+            <label>희망하는 4세대 실비보험 특약 유형을 선택하세요:</label>
+            <select id="coverage_type" name="coverage_type" style="width:100%;">
+                <option value="all_include">기본형 + 비급여 3대 특약 모두 포함 (추천)</option>
+                <option value="basic_only">기본형만 가입</option>
+                <option value="custom_select">필요한 특약만 선택 (상담 요청)</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>궁금한 점 또는 추가 요청 사항:</label>
+            <textarea id="message" name="message" rows="4" placeholder="예: 기존 보험 해지 여부 상담, 특정 보험사 비교 요청 등"></textarea>
+        </div>
+
+        <button type="submit" class="btn-cta">실시간 보험료 계산 및 비교 결과 받기</button>
+
+    </form>
+    <p style="text-align:center; font-size:0.9em; margin-top:15px; color:#777;">* 본 견적은 고객님의 건강 상태에 따른 예상 보험료이며, 최종 심사 결과에 따라 달라질 수 있습니다.</p>
+  </section>
+
+  <section id="external-links">
+    <h2>신뢰성 있는 외부 정보 출처</h2>
+    <p>실비보험 관련 더 정확한 정보를 얻고자 하는 분들을 위해 공신력 있는 기관의 정보를 안내해 드립니다.</p>
+    <ul>
+        <li><a href="https://www.fss.or.kr" target="_blank">금융감독원 (FSS)</a>: 보험 상품 정보, 소비자 보호, 분쟁 조정 사례 등 공식 정보를 제공합니다.</li>
+        <li><a href="https://www.kca.go.kr" target="_blank">한국소비자원</a>: 소비자 권익 보호 및 피해 구제 정보를 제공합니다.</li>
+        <li><a href="https://namu.wiki/w/%EC%8B%A4%EC%86%90%EC%9D%98%EB%A3%8C%EB%B9%84%EB%B3%B4%ED%97%98" target="_blank">나무위키: 실손의료비보험</a>: 실비보험의 역사, 세대별 특징 등을 쉽게 정리해 놓았습니다.</li>
+        <li><a href="https://www.ins.or.kr" target="_blank">생명보험협회/손해보험협회</a>: 보험 상품 공시 정보, 보험 관련 통계 자료를 제공합니다.</li>
+        <li><a href="https://www.gov.kr/portal/main" target="_blank">대한민국 정부포털</a>: 보험 관련 법령 및 제도 정보를 확인할 수 있습니다.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>© 2026 실비보험 다이렉트 비교센터. 모든 콘텐츠는 정보 제공 목적으로만 사용되며, 법적 책임은 없습니다.</p>
+    <p>개인정보처리방침 | 이용약관</p>
+  </footer>
+
+
+  
